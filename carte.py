@@ -15,23 +15,22 @@ import algos
 from ile import Ile
 from point import Point, Droite
 import time
+import os
+import sys
+
 
 
 
 
 class Carte:
 
-    def __init__(self, seed, debug=False):
+    def __init__(self, seed=0, debug=False):
 
         t_debut = time.time()
         assert TAILLE_CARTE[0] >= 40 and TAILLE_CARTE[1] >= 40, "Carte trop petite"
         self.iles = []
         self.debug = debug
         self.seed = seed
-        self.generate()
-
-        if self.debug: print(f"Carte créée ({(time.time() - t_debut)*1000}ms)")
-
 
     # Création d'une carte aléatoire
     def generate(self):
@@ -42,7 +41,7 @@ class Carte:
 
         # On génère des points qui les centres d'iles
         quadrants = [(int((TAILLE_CARTE[0]-4*TAILLE_ILES)*x/3 + 2*TAILLE_ILES),int((TAILLE_CARTE[1]- 4*TAILLE_ILES)*y/3 + 2*TAILLE_ILES)) for x in range(4) for y in range(4)]
-        print(quadrants)
+        if self.debug: print(quadrants)
         for i in range(3):
             for j in range(3):
                 for n in range(math.ceil(NOMBRE_ILES/9)):
@@ -122,7 +121,17 @@ class Carte:
         plt.grid()
         plt.show(block=stop_script)
         return
-
+    
+    def sauvegarder(self, nom_fichier):
+        script_directory = os.path.dirname(os.path.abspath(sys.argv[0]))
+        nom_fichier = script_directory + "/cartes/" + nom_fichier
+        with open(nom_fichier, "w") as f:
+            f.write(str(self.seed) + "\n")
+            for ile in self.iles:
+                f.write("\n")
+                for point in ile.contours:
+                    f.write(str(point.x) + " " + str(point.y) + "\n")
+        return
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@
 
 """
 
-from settings import *
+import settings
 from point import Point
 import math
 import random

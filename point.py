@@ -13,28 +13,26 @@ import math
 
 class Point:
 
-    def __init__(self, x, y) -> None:
+    def __init__(self, x, y, ile = -1) -> None:
         # Constructeur de la classe Position
 
         self.x = x
         self.y = y
+        self.ile = ile
 
     def __str__(self) -> str:
         # Affichage d'une position
-
         return f"({self.x}, {self.y})"
     
     def __hash__(self) -> int:
         return hash((self.x, self.y))
 
-    def distance(self, point):
+    def distance(self, point) -> float:
         # Calcul de la distance par rapport à un autre point, par défaut le point d'origine
-
         return math.sqrt((self.x-point.x)**2+(self.y-point.y)**2)
 
-    def angle(self, point):
+    def angle(self, point) -> float:
         # Calcul de l'angle par rapport à un autre points
-
         return math.atan2(self.y-point.y, self.x-point.x)
 
     def est_du_meme_cote(self, point, droite) -> bool:
@@ -51,15 +49,12 @@ class Point:
         return (p1.x - self.x) * (p2.y - self.y) - (p2.x - self.x) * (p1.y - self.y) <= 0
 
     def __repr__(self):
-
         return f"({self.x}, {self.y})"
 
     def __eq__(self, other):
-
         return self.x == other.x and self.y == other.y
 
     def __ne__(self, other):
-
         return self.x != other.x or self.y != other.y
 
 

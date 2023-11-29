@@ -31,7 +31,9 @@ def main():
     seed = SEED if 0 <= SEED < 2**32 else random.randint(0, 2**32)
     
     c = carte.Carte(seed, debug)
+    c.generate()
     c.print_carte()
+    c.sauvegarder("carte.map")
 
     if debug : input("Programme éxécuté avec succès, appuyez sur une touche pour quitter...")
     return
