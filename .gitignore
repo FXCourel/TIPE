@@ -1,7 +1,7 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+core/# Byte-compiled / optimized / DLL files
+core/__pycache__/
+core/*.py[cod]
+core/*$py.class
 
 # C extensions
 *.so
@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 cartes/carte.map
+/docs/*
+!/docs/*.tex
+!/docs/*.pdf
