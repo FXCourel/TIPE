@@ -162,4 +162,5 @@ cython_debug/
 cartes/carte.map
 /docs/*
 !/docs/*.tex
+!/docs/*.bib
 !/docs/*.pdf
