@@ -1,4 +1,4 @@
-class Noeud:
+class   Noeud:
 
     def __init__(self, data) -> None:
         self._data = data
@@ -47,6 +47,14 @@ class Noeud:
         self._hauteur = 1 + max(self._gauche.hauteur, self._droite.hauteur
                                 ) if self._gauche is not None and self._droite is not None else 1
         return self._hauteur
+    
+    def ajout_gauche(self, data):
+        self.gauche = Noeud(data)
+        return self.gauche
+    
+    def ajout_droite(self, data):
+        self.droite = Noeud(data)
+        return self.droite
 
     @property
     def balance(self):

@@ -52,17 +52,29 @@ def voronoi(points_set: set[Point]):
 def handle_site_event(pi, events: Tas, bleach_line: Arbre, dcel: DCEL):
     # 1. If T is empty, insert pi into it (so that T consists of a single leaf storing pi)
     # and return. Otherwise, continue with steps 2– 5.
+    if bleach_line.est_vide():
+        bleach_line.inserer(pi)
+        return
+
     # 2. Search in T for the arc α vertically above pi. If the leaf representing α has
     # a pointer to a circle event in Q, then this circle event is a false alarm and it
     # must be deleted from Q.
+    alpha: Noeud = bleach_line.recherche()
+
+    assert isinstance(alpha.data, Event)
+    if alpha.data.is_circle_event():
+        events.supprimer(alpha.data)
+
     # 3. Replace the leaf of T that represents α with a subtree having three leaves.
     # The middle leaf stores the new site pi and the other two leaves store the site
     # p j that was originally stored with α. Store the tuples 〈p j, p i〉 and 〈p i, p j〉
     # representing the new breakpoints at the two new internal nodes. Perform
     # rebalancing operations on T if necessary.
+
     # 4. Create new half-edge records in the Voronoi diagram structure for the
     # edge separating V(pi) and V(p j), which will be traced out by the two new
     # breakpoints.
+
     # 5. Check the triple of consecutive arcs where the new arc for pi is the left arc
     # to see if the breakpoints converge. If so, insert the circle event into Q and
     # add pointers between the node in T and the node in Q. Do the same for the
@@ -77,11 +89,14 @@ def handle_circle_event(gamma, events: Tas, bleach_line: Arbre, dcel: DCEL):
     # α from Q; these can be found using the pointers from the predecessor and
     # the successor of γ in T. (The circle event where α is the middle arc is
     # currently being handled, and has already been deleted from Q.)
+    bleach_line.supprimer(gamma)
+
     # 2. Add the center of the circle causing the event as a vertex record to the
     # doubly-connected edge list D storing the Voronoi diagram under construc-
     # tion. Create two half-edge records corresponding to the new breakpoint
     # of the beach line. Set the pointers between them appropriately. Attach the
     # three new records to the half-edge records that end at the vertex.
+
     # 3. Check the new triple of consecutive arcs that has the former left neighbor
     # of α as its middle arc to see if the two breakpoints of the triple converge.
     # If so, insert the corresponding circle event into Q. and set pointers between
