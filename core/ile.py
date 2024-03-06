@@ -27,7 +27,7 @@ class Ile:
     def __repr__(self):
         return f"Ile{self.centre}"
 
-    def mise_a_jour_contours(self):
+    def grahamiser_contours(self):
         self.contours = algos.parcours_de_graham(self.contours, points_redondants_possibles=True)
         self.contours = self.contours[1:] + [self.contours[1]]
         self.points_x = [p.x for p in self.contours]
@@ -56,7 +56,7 @@ class Ile:
     def fusionner(self, autre):
 
         self.contours += autre.contours
-        self.mise_a_jour_contours()
+        self.grahamiser_contours()
         self.mise_a_jour_rayon()
 
 

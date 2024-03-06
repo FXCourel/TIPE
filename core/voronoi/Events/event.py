@@ -13,6 +13,7 @@ class Event:
             self._circle = data
             self._prio = self._circle[1]
             self._leaf = arc
+            self.fausse_alerte = False
         else:
             raise TypeError('Event ni de type site-event ni circle-event')
 
