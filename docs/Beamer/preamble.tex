@@ -1,0 +1,61 @@
+% PACKAGES
+
+\usepackage{natbib}         % Pour la bibliographie
+\usepackage{url}            % Pour citer les adresses web
+\usepackage[T1]{fontenc}    % Encodage des accents
+\usepackage[utf8]{inputenc} % Lui aussi
+\usepackage[french]{babel}  % Pour la traduction française
+\usepackage{numprint}       % Histoire que les chiffres soient bien
+\usepackage{amsmath}        % La base pour les maths
+\usepackage{mathrsfs}       % Quelques symboles supplémentaires
+\usepackage{amssymb}        % encore des symboles.
+\usepackage{amsfonts}       % Des fontes, eg pour \mathbb.
+\usepackage{amsthm}
+% \usepackage{lmodern}
+\usepackage{anyfontsize}
+\usepackage{cancel}
+\usepackage{rotating}
+\usepackage{appendixnumberbeamer}
+
+%%% Pour L'utilisation de Python
+\usepackage{minted}
+% \usemintedstyle{monokai}
+
+\usepackage{graphicx} % inclusion des graphiques
+\usepackage{wrapfig}  % Dessins dans le texte.
+\usepackage{stackengine}
+
+\usepackage{tikz}     % Un package pour les dessins (utilisé pour l'environnement {code})
+\usepackage[framemethod=TikZ]{mdframed}
+
+% Algorithmes
+\usepackage{algorithm}
+\usepackage{frpseudocode}
+\renewcommand{\listalgorithmname}{Table des algorithmes}
+% Compléments pour transformer les algorithmes en francais
+\algnewcommand\algorithmicnot{\textbf{ non }}
+\algnewcommand\algorithmicand{\textbf{ et }}
+\algnewcommand\algorithmicor{\textbf{ ou }}
+\algrenewcommand\algorithmicrequire{\textbf{Entrée : }}
+\algrenewcommand\algorithmicensure{\textbf{Sortie : }}
+
+
+% COMMANDES
+
+\newenvironment{code}{%
+\begin{mdframed}[linecolor=white,innerrightmargin=0,innerleftmargin=0,
+backgroundcolor=white,skipabove=0,skipbelow=0,roundcorner=5pt,
+splitbottomskip=0,splittopskip=0]
+}{%
+\end{mdframed}
+}
+
+\newcommand\sources{\fontsize{4pt}{7.2}\selectfont}
+\newcommand\codesize{\fontsize{6pt}{7.2}\selectfont}
+
+\newcommand\R{\mathbb{R}}
+\DeclareMathOperator{\Vor}{\mathrm{Vor}}
+
+\newtheorem{defini}{Définition}
+\theoremstyle{definition}
+\newtheorem{thm}{Théorème}
